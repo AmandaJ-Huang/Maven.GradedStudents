@@ -3,6 +3,7 @@ package io.zipcoder;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.Map;
 
 public class ClassroomTest {
 
@@ -100,8 +101,33 @@ public class ClassroomTest {
 
         //Then
         System.out.println(Arrays.toString(sorted));
-        System.out.println(sorted.length);
     }
 
+    @Test
+    public void getGradeBookTest() {
+        //Given
+        int maxNumberOfStudents = 5;
+        Classroom classroom = new Classroom(maxNumberOfStudents);
+        Double[] examScores = { 50.0 };
+        Double[] examScores1 = { 100.0 };
+        Double[] examScores2 = { 200.0 };
+        Double[] examScores3 = { 300.0 };
+        Double[] examScores4 = { 400.0 };
+        Student student = new Student("Leon", "Hunter", examScores);
+        Student student1 = new Student("Dolio", "Durant", examScores1);
+        Student student2 = new Student("Kris", "Younger", examScores2);
+        Student student3 = new Student("Desa", "Burton", examScores3);
+        Student student4 = new Student("Liz", "Thorpe", examScores4);
 
+        //When
+        classroom.addStudent(student);
+        classroom.addStudent(student1);
+        classroom.addStudent(student2);
+        classroom.addStudent(student3);
+        classroom.addStudent(student4);
+        String gradeBook = classroom.getGradeBook();
+
+        //Then
+        System.out.println(gradeBook);
+    }
 }

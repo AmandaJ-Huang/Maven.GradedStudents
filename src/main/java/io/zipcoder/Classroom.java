@@ -1,5 +1,9 @@
 package io.zipcoder;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 public class Classroom {
     private int maxNumberOfStudents;
     private Student[] students;
@@ -77,5 +81,38 @@ public class Classroom {
 
         }
         return newArray;
+    }
+
+    public String getGradeBook() {
+        Map<String, ArrayList<Student>> gradeBook = new HashMap<>();
+        String[] grades = "ABCDF".split("");
+
+        for (String grade : grades) {
+            gradeBook.put(grade, new ArrayList<>());
+        }
+
+        Double average = getAverageExamScore();
+
+        for (Student student : students) {
+            if (student.getAverageExamScore() >= (average * 2 * 0.9)) {
+                gradeBook.get("A").add(student);
+            } else if (student.getAverageExamScore() >= (average * 2 * 0.71)) {
+                gradeBook.get("B").add(student);
+            } else if (student.getAverageExamScore() >= (average * 2 * 0.5)) {
+                gradeBook.get("C").add(student);
+            } else if (student.getAverageExamScore() >= (average * 2 * 0.11)) {
+                gradeBook.get("D").add(student);
+            } else {
+                gradeBook.get("F").add(student);
+            }
+        }
+
+        String gradesMap = "";
+
+        for (String grade : gradeBook.keySet()) {
+            gradesMap += String.format("\n%2s : %10s", grade, gradeBook.get(grade));
+        }
+
+        return gradesMap;
     }
 }
