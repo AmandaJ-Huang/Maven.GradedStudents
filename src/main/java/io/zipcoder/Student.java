@@ -60,4 +60,12 @@ public class Student {
 
         return sum/size;
     }
+
+    @Override
+    public String toString() {
+        return new StringBuilder()
+                .append("> Student Name: " + firstName + " " + lastName)
+                .append("\n> "  + getExamScores())
+                .toString();
+    }
 }
