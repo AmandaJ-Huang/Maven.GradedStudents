@@ -5,19 +5,52 @@ public class Classroom {
     private Student[] students;
 
     public Classroom() {
-        this.students = new Student[30];
+        this.maxNumberOfStudents = 30;
+        this.students = new Student[maxNumberOfStudents];
     }
 
     public Classroom(int maxNumberOfStudents) {
         this.maxNumberOfStudents = maxNumberOfStudents;
+        this.students = new Student[maxNumberOfStudents];
     }
 
-    public Classroom(int maxNumberOfStudents, Student[] students) {
-        this.maxNumberOfStudents = maxNumberOfStudents;
+    public Classroom(Student[] students) {
         this.students = students;
+        this.maxNumberOfStudents = students.length;
     }
 
-    public Student getStudents() {
-        return this.students[0];
+    public Student[] getStudents() {
+        return this.students;
+    }
+
+    public double getAverageExamScore() {
+        Double average = 0.0;
+        Integer count = 0;
+        for (Student student : students) {
+            average += student.getAverageExamScore();
+            count++;
+        }
+        return average/count;
+    }
+
+    public void addStudent(Student student) {
+        for (int i = 0; i < maxNumberOfStudents; i++) {
+            this.students[i] = student;
+        }
+    }
+
+    public void removeStudent(String firstName, String lastName) {
+        Student[] newArray = new Student[students.length];
+        int counter = 0;
+
+        for (int i = 0; i < students.length; i++) {
+            if (students[i].getFirstName().equals(firstName)
+                    && students[i].getLastName().equals(lastName)) {
+                i++;
+            }
+            newArray[counter] = students[i];
+            counter++;
+        }
+        students = newArray;
     }
 }

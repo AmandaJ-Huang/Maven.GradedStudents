@@ -30,6 +30,14 @@ public class Student {
         return this.lastName;
     }
 
+    public Boolean equals(Student student) {
+        if (student.getFirstName().equals(this.firstName)
+                && student.getLastName().equals(this.lastName)) {
+            return true;
+        }
+        return false;
+    }
+
     public String getExamScores() {
         String output = "";
         for (int i = 0; i < examScores.size(); i++) {
