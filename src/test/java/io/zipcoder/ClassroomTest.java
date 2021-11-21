@@ -78,4 +78,30 @@ public class ClassroomTest {
         System.out.println("===========================");
         System.out.println(postExpelledAsString);
     }
+
+    @Test
+    public void getStudentsByScoreTest() {
+        //Given
+        int maxNumberOfStudents = 3;
+        Classroom classroom = new Classroom(maxNumberOfStudents);
+        Double[] examScores = { 50.0, 50.0, 50.0, 50.0 };
+        Double[] examScores1 = { 100.0, 100.0, 100.0, 100.0 };
+        Double[] examScores2 = { 200.0, 200.0, 200.0, 200.0 };
+        Student student = new Student("Leon", "Hunter", examScores);
+        Student student1 = new Student("Dolio", "Durant", examScores1);
+        Student student2 = new Student("Kris", "Younger", examScores2);
+
+        //When
+        classroom.addStudent(student);
+        classroom.addStudent(student1);
+        classroom.addStudent(student2);
+
+        Student[] sorted = classroom.getStudentsByScore();
+
+        //Then
+        System.out.println(Arrays.toString(sorted));
+        System.out.println(sorted.length);
+    }
+
+
 }

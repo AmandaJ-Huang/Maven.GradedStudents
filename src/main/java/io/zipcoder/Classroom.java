@@ -34,8 +34,11 @@ public class Classroom {
     }
 
     public void addStudent(Student student) {
-        for (int i = 0; i < maxNumberOfStudents; i++) {
-            this.students[i] = student;
+        for (int i = 0; i < students.length; i++) {
+            if(this.students[i] == null) {
+                this.students[i] = student;
+                return;
+            }
         }
     }
 
@@ -52,5 +55,27 @@ public class Classroom {
             counter++;
         }
         students = newArray;
+    }
+
+    public Student[] getStudentsByScore() {
+        Student[] newArray = new Student[students.length];
+        Student temp;
+
+        for(int i = 0; i < students.length; i++) {
+            newArray[i] = students[i];
+        }
+
+        for(int i = 0; i < newArray.length-1; i++) {
+            for (int j = 0; j < newArray.length-i-1; j++) {
+
+                if (newArray[j].getAverageExamScore() < newArray[j+1].getAverageExamScore()) {
+                    temp = newArray[j+1]; //temp = dolio
+                    newArray[j+1] = newArray[j]; //dolio = leon
+                    newArray[j] = temp; //leon = dolio
+                }
+            }
+
+        }
+        return newArray;
     }
 }
